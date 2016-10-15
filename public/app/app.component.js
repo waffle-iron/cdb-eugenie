@@ -17,8 +17,8 @@ var CmpComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'cmp-app',
-            templateUrl: 'cmp.component.html',
-            styleUrls: ['cmp.component.css']
+            templateUrl: 'app.component.html',
+            styleUrls: ['app.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], CmpComponent);

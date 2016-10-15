@@ -1,9 +1,9 @@
 "use strict";
 // server.js
 var express = require("express");
+var mongoose = require("mongoose");
+var morgan = require("morgan");
 // modules =================================================
-var morgan = require('morgan');
-var mongoose = require('mongoose');
 var app = express();
 app.use(morgan('combined'));
 var bodyParser = require('body-parser');
@@ -28,10 +28,16 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/'));
 // routes ==================================================
-require('./api/dancer')(app); // configure our routes
+var dancer = require("./api/dancer");
+dancer.dancers(app);
 // start app ===============================================
 // startup our app at http://localhost:8080
 app.listen(port);
+// frontend routes =========================================================
+// route to handle all angular requests
+app.get('*', function (req, res) {
+    res.sendfile('index.html'); // load our public/index.html file
+});
 // shoutout to the user                     
 console.log('Server running at ' + port);
 // expose app           

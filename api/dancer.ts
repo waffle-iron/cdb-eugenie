@@ -3,7 +3,7 @@ import * as express from "express";
 import {IHero} from "../public/app/model/ihero";
 import * as Dancer from "./mongoose/dancer";
 
-export function players(app:express.Express) {
+export function dancers(app:express.Express) {
 
     // server routes ===========================================================
     // handle things like api calls
@@ -48,10 +48,5 @@ export function players(app:express.Express) {
     // route to handle creating goes here (app.post)
     // route to handle delete goes here (app.delete)
 
-    // frontend routes =========================================================
-    // route to handle all angular requests
-    app.get('*', function(req, res) {
-        res.sendfile('index.html'); // load our public/index.html file
-    });
 
 };

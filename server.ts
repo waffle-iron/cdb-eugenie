@@ -1,12 +1,12 @@
 // server.js
 import * as express from "express";
+import * as mongoose from "mongoose";
+import * as morgan from "morgan";
+
 
 // modules =================================================
 
-var morgan = require('morgan')
-var mongoose = require('mongoose');
-
-var app            = express();
+var app = express();
 app.use(morgan('combined'))
 
 var bodyParser     = require('body-parser');
@@ -41,11 +41,19 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/')); 
 
 // routes ==================================================
-require('./api/dancer')(app); // configure our routes
+import * as dancer from "./api/dancer";
+dancer.dancers(app);
 
 // start app ===============================================
 // startup our app at http://localhost:8080
 app.listen(port);               
+
+// frontend routes =========================================================
+// route to handle all angular requests
+app.get('*', function(req, res) {
+    res.sendfile('index.html'); // load our public/index.html file
+});
+
 
 // shoutout to the user                     
 console.log('Server running at ' + port);
