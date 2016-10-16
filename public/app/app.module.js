@@ -14,6 +14,7 @@ var forms_1 = require('@angular/forms');
 var app_routing_1 = require('./app.routing');
 var http_1 = require('@angular/http');
 require('./rxjs-extensions');
+var angular2_jwt_1 = require('angular2-jwt');
 // Imports for loading & configuring the in-memory web api
 //import { InMemoryWebApiModule } from 'angular2-in-memory-web-api';
 //import { InMemoryDataService }  from './in-memory-data.service';
@@ -44,7 +45,10 @@ var CmpModule = (function () {
                 highlight_directive_1.HighlightDirective
             ],
             bootstrap: [app_component_1.CmpComponent],
-            providers: [hero_service_1.HeroService]
+            providers: [
+                hero_service_1.HeroService,
+                angular2_jwt_1.AUTH_PROVIDERS
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], CmpModule);

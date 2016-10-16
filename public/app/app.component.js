@@ -16,7 +16,7 @@ var CmpComponent = (function () {
     CmpComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'cmp-app',
+            selector: 'app',
             templateUrl: 'app.component.html',
             styleUrls: ['app.component.css']
         }), 

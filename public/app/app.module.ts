@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { routing } from './app.routing';
 import { HttpModule } from '@angular/http';
 import './rxjs-extensions';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 // Imports for loading & configuring the in-memory web api
 //import { InMemoryWebApiModule } from 'angular2-in-memory-web-api';
@@ -34,7 +35,10 @@ import { HighlightDirective } from './directives/highlight.directive';
     HighlightDirective
   ],
   bootstrap: [CmpComponent],
-  providers: [HeroService]
+  providers: [
+    HeroService,
+    AUTH_PROVIDERS
+    ]
 })
 export class CmpModule {
 
