@@ -1,44 +1,50 @@
+/**
+ * Module Dependencies
+ */
+
 var gulp = require('gulp');
-var merge = require ('merge-stream');
-var rimraf = require("rimraf");
-var gulpRimRaf = require('gulp-rimraf')
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
+var nodemon = require('gulp-nodemon');
 
-var jsPath = './public/js' 
-var angularPath = jsPath + '/@angular';
-var rxjsPath = jsPath + '/rxjs';
-var appjsPath = './public/app/**/*.{js,js.map}';
+/**
+ * Gulp Tasks
+ */
 
 
-gulp.task('default', ['copy:libraries']);
-
-gulp.task('copy:libraries', function () {
-  var angular = gulp.src('./node_modules/@angular/**/*.js', {base: './node_modules/@angular'})
-                .pipe(gulp.dest(angularPath));
-  var rxjs = gulp.src('./node_modules/rxjs/**/*.js', {base: './node_modules/rxjs'})
-                .pipe(gulp.dest(rxjsPath));
-                
-  var mongoose = gulp.src('./node_modules/mongoose/**/*.js', {base: './node_modules/@angular'})
-                .pipe(gulp.dest(jsPath +'/mongoose'));
-                
-  gulp.src('./node_modules/core-js/client/shim.min.js').pipe(gulp.dest(jsPath + '/core-js/client'))
-  gulp.src('./node_modules/zone.js/dist/zone.js').pipe(gulp.dest(jsPath + '/zone.js/dist'))
-  gulp.src('./node_modules/reflect-metadata/Reflect.js').pipe(gulp.dest(jsPath + '/reflect-metadata'))
-  gulp.src('./node_modules/systemjs/dist/system.src.js').pipe(gulp.dest(jsPath + '/systemjs/dist'))
-                
-  return merge(angular, rxjs);
+gulp.task('browser-sync', ['nodemon'], function() {
+  console.log('browser-sync on 5000');
+  browserSync.init(null,{
+    proxy: "localhost:8080",  // local node app address
+    port: 5050,  // use *different* port than above
+    files: ["./public/**/*.{html,htm,css,js}"],
+    notify: true
+  });
 });
 
-gulp.task('clean', ['clean:js', 'clean:app']);
-gulp.task('clean:app', function(){
-    return gulp.src(appjsPath, { read:false })
-        .pipe(gulpRimRaf());
+gulp.task('nodemon', function (cb) {
+  var called = false;
+  return nodemon({
+    script: 'server.js',
+    ignore: [
+      'gulpfile.js',
+      'node_modules/'
+    ]
+  })
+  .on('start', function () {
+    if (!called) {
+      called = true;
+      cb();
+    }
+  })
+  .on('restart', function () {
+    setTimeout(function () {
+      reload({ stream: false });
+    }, 1000);
+  });
 });
 
-gulp.task('clean:js', ['clean:angular', 'clean:rxjs'])
-gulp.task('clean:angular', function (cb) {
-   rimraf(angularPath, cb);
-});
-
-gulp.task('clean:rxjs', function (cb) {
-   rimraf(rxjsPath, cb);
+gulp.task('default', ['browser-sync'], function () {
+  gulp.watch(['public/*.html'], reload);
+  
 });

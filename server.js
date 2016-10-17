@@ -2,10 +2,9 @@
 // server.js
 var express = require("express");
 var mongoose = require("mongoose");
-var morgan = require("morgan");
 // modules =================================================
 var app = express();
-app.use(morgan('combined'));
+//app.use(morgan('combined'))
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 // configuration ===========================================
