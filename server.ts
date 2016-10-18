@@ -7,7 +7,7 @@ import * as morgan from "morgan";
 // modules =================================================
 
 var app = express();
-app.use(morgan('combined'))
+//app.use(morgan('combined'))
 
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
@@ -40,13 +40,13 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/')); 
 
-// routes ==================================================
-import * as dancer from "./api/dancer";
-dancer.dancers(app);
-
 // start app ===============================================
 // startup our app at http://localhost:8080
 app.listen(port);               
+
+// routes ==================================================
+import * as dancer from "./api/dancer";
+dancer.dancers(app);
 
 // frontend routes =========================================================
 // route to handle all angular requests

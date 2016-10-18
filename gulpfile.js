@@ -6,20 +6,18 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var nodemon = require('gulp-nodemon');
-
+//var config = require('./bs-config.json');
+var config = require('./bs-config');
 /**
  * Gulp Tasks
  */
 
 
 gulp.task('browser-sync', ['nodemon'], function() {
-  console.log('browser-sync on 5000');
-  browserSync.init(null,{
-    proxy: "localhost:8080",  // local node app address
-    port: 5050,  // use *different* port than above
-    files: ["./public/**/*.{html,htm,css,js}"],
-    notify: true
-  });
+  console.log(config);
+  var cb = cb || function noop() { };
+
+  browserSync.init(null,config);
 });
 
 gulp.task('nodemon', function (cb) {

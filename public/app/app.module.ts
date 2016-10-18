@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { routing } from './app.routing';
 import { HttpModule } from '@angular/http';
 import './rxjs-extensions';
-import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { AUTH_PROVIDERS } from 'angular2-jwt/angular2-jwt';
 
 // Imports for loading & configuring the in-memory web api
 //import { InMemoryWebApiModule } from 'angular2-in-memory-web-api';
