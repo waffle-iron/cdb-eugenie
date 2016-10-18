@@ -1,3 +1,4 @@
 # excludes
 /node_modules
 /typings
+/config/db.js
