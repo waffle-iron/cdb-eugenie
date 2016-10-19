@@ -1,0 +1,5 @@
+{
+  "rejectUnauthorized": false,
+  "registryURL": "http://api.typings.org/",
+  "proxy": "http://localhost:3128/"
+}
