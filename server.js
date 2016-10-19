@@ -26,12 +26,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('X-HTTP-Method-Override'));
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/'));
-// routes ==================================================
-var dancer = require("./api/dancer");
-dancer.dancers(app);
 // start app ===============================================
 // startup our app at http://localhost:8080
 app.listen(port);
+// routes ==================================================
+var dancer = require("./api/dancer");
+dancer.dancers(app);
 // frontend routes =========================================================
 // route to handle all angular requests
 app.get('*', function (req, res) {

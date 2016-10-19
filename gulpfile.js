@@ -26,7 +26,8 @@ gulp.task('nodemon', function (cb) {
     script: 'server.js',
     ignore: [
       'gulpfile.js',
-      'node_modules/'
+      'node_modules/',
+      'public/*'
     ]
   })
   .on('start', function () {

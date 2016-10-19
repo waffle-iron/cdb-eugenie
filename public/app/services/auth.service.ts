@@ -4,7 +4,7 @@ import { Injectable }      from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
 
 // Avoid name not found warnings
-declare var Auth0Lock: any;
+declare var Auth0Lock : any;
 
 @Injectable()
 export class AuthService {
@@ -20,7 +20,14 @@ export class AuthService {
 
   public login() {
     // Call the show method to display the widget.
-    this.lock.show();
+    this.lock.show({},function(err, profile, id_token) {
+      if (err) {
+        console.log("There was an error :/", err);
+        return;
+      }
+
+      console.log("Hey dude", profile);
+    });
   };
 
   public authenticated() {

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { routing } from './app.routing';
 import { HttpModule } from '@angular/http';
 import './rxjs-extensions';
-import { AUTH_PROVIDERS } from 'angular2-jwt/angular2-jwt';
+import { AUTH_PROVIDERS }      from 'angular2-jwt';
 
 // Imports for loading & configuring the in-memory web api
 //import { InMemoryWebApiModule } from 'angular2-in-memory-web-api';
@@ -17,6 +17,7 @@ import { HeroService } from './services/hero.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroSearchComponent } from './team/hero-search.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { HighlightDirective } from './directives/highlight.directive';
   bootstrap: [CmpComponent],
   providers: [
     HeroService,
-    AUTH_PROVIDERS
+    AUTH_PROVIDERS,
+    AuthService
     ]
 })
 export class CmpModule {

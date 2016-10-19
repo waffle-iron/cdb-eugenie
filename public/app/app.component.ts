@@ -11,6 +11,6 @@ import { AuthService } from './services/auth.service';
 
 export class CmpComponent {
   title = 'Liste des compétiteurs';
-  //constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService) {}
 }
 

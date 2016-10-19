@@ -12,6 +12,8 @@
     map: {
       // our app is within the app folder
       app: './public/app',
+      'js-base64':'npm:js-base64/base64.js',
+      'angular2-jwt': 'npm:angular2-jwt/angular2-jwt.js',  
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
@@ -24,12 +26,16 @@
       // other libraries
       'rxjs':                       'npm:rxjs',
       'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
-      'angular2-jwt': 'npm:angular2-jwt',
-      'js-base64':'npm:js-base64/base64.js',
       'buffer':'@empty'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
+      'angular2-jwt': {
+        defaultExtension: 'js'
+      },
+      'js-base64': {
+        defaultExtension: 'js'
+      },
       app: {
         main: './main.js',
         defaultExtension: 'js'
@@ -39,10 +45,6 @@
       },
       'angular2-in-memory-web-api': {
         main: './index.js',
-        defaultExtension: 'js'
-      },
-      'angular2-jwt': {
-        main: './angular2-jwt.js',
         defaultExtension: 'js'
       }
     }

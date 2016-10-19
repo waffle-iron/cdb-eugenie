@@ -2,3 +2,7 @@
 /node_modules
 /typings
 /config/db.js
+
+*.js
+*.js.map
+
