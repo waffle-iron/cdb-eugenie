@@ -26,7 +26,7 @@ export class AuthService {
         console.log("There was an error :/", err);
         return;
       }
-/test
+
       console.log("Hey dude", profile);
      // localStorage.setItem('id_token', id_token);
     });
