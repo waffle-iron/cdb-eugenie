@@ -14,6 +14,7 @@ export class AuthService {
   constructor() {
     // Add callback for lock `authenticated` event
     this.lock.on("authenticated", (authResult) => {
+      console.log("authenticated", authResult);
       localStorage.setItem('id_token', authResult.idToken);
     });
   }
@@ -25,8 +26,9 @@ export class AuthService {
         console.log("There was an error :/", err);
         return;
       }
-
+/test
       console.log("Hey dude", profile);
+     // localStorage.setItem('id_token', id_token);
     });
   };
 
