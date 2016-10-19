@@ -6,3 +6,7 @@
 *.js
 *.js.map
 
+!bs-config.js
+!gulpfile.js
+!index.js
+!systemjs.config.js
