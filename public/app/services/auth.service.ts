@@ -21,7 +21,9 @@ export class AuthService {
   });
 
   constructor(private http: Http) {
-    console.log("constructor")
+    // Set userProfile attribute if already saved profile
+    this.userProfile = JSON.parse(localStorage.getItem('profile'));
+
     // Add callback for lock `authenticated` event
     this.lock.on("authenticated", (authResult) => {
 
@@ -59,5 +61,9 @@ export class AuthService {
   public logout() {
     // Remove token from localStorage
     localStorage.removeItem('id_token');
+  };
+
+  public getUserProfile() {
+    return this.userProfile;
   };
 }

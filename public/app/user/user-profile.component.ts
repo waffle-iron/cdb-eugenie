@@ -8,40 +8,26 @@ import { User } from '../model/user';
   moduleId: module.id,
   selector: 'user-profile',
   templateUrl: 'user-profile.component.html',
-  styleUrls: [ 'user-profile.component.css' ],
-  providers: [AuthService]
+  styleUrls: [ 'user-profile.component.css' ]
 })
 
-export class HeroSearchComponent implements OnInit {
-  userProfile: Observable<User>;
+export class UserProfileComponent implements OnInit {
+  userProfile: User;
 
   constructor(
     private AuthService: AuthService,
     private router: Router) {}
 
-  // Push a search term into the observable stream.
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
-
   ngOnInit(): void {
-    this.heroes = this.searchTerms
-      .debounceTime(300)        // wait for 300ms pause in events
-      .distinctUntilChanged()   // ignore if next search term is same as previous
-      .switchMap(term => term   // switch to new observable each time
-        // return the http search observable
-        ? this.heroSearchService.search(term)
-        // or the observable of empty heroes if no search term
-        : Observable.of<Hero[]>([]))
-      .catch(error => {
-        // TODO: real error handling
-        console.log(error);
-        return Observable.of<Hero[]>([]);
-      });
+    if (!this.AuthService.authenticated()) {
+       this.gotoRoot();
+    }
+
+    this.userProfile = this.AuthService.getUserProfile()
   }
 
-  gotoDetail(hero: Hero): void {
-    let link = ['/detail', hero._id];
+  gotoRoot(): void {
+    let link = ['/'];
     this.router.navigate(link);
   }
 }

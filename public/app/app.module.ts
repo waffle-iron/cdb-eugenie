@@ -16,6 +16,7 @@ import { HeroDetailComponent } from './team/hero-detail.component';
 import { HeroService } from './services/hero.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroSearchComponent } from './team/hero-search.component';
+import { UserProfileComponent }   from './user/user-profile.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { AuthService } from './services/auth.service';
 
@@ -33,7 +34,8 @@ import { AuthService } from './services/auth.service';
     HeroesComponent,
     HeroDetailComponent,
     HeroSearchComponent,
-    HighlightDirective
+    HighlightDirective,
+    UserProfileComponent
   ],
   bootstrap: [CmpComponent],
   providers: [
