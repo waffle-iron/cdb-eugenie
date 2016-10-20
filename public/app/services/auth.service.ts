@@ -1,5 +1,4 @@
 // app/auth.service.ts
-
 import { Injectable }      from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
 
@@ -9,27 +8,23 @@ declare var Auth0Lock : any;
 @Injectable()
 export class AuthService {
   // Configure Auth0
-  lock = new Auth0Lock('r2Y8BGhSsDqsHt7uUg1eGGAlTotfRuaC', 'yvesgirard.eu.auth0.com', {});
+  lock = new Auth0Lock('r2Y8BGhSsDqsHt7uUg1eGGAlTotfRuaC', 'yvesgirard.eu.auth0.com', {
+    auth: { 
+      redirect: false 
+    }
+  });
 
   constructor() {
+    console.log("constructor")
     // Add callback for lock `authenticated` event
     this.lock.on("authenticated", (authResult) => {
-      console.log("authenticated", authResult);
       localStorage.setItem('id_token', authResult.idToken);
     });
   }
 
   public login() {
     // Call the show method to display the widget.
-    this.lock.show({},function(err, profile, id_token) {
-      if (err) {
-        console.log("There was an error :/", err);
-        return;
-      }
-
-      console.log("Hey dude", profile);
-     // localStorage.setItem('id_token', id_token);
-    });
+    this.lock.show();
   };
 
   public authenticated() {
