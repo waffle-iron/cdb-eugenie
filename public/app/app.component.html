@@ -1,12 +1,31 @@
-<div class="navbar-header">
-  <button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
-  <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+
+<div class="demo-layout-transparent mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--transparent">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">{{title}}</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/competitors" routerLinkActive="active">Compétiteurs</a>
+        <a routerLink="/profile" routerLinkActive="active" *ngIf="auth.authenticated()">Profile</a>
+        <button class="btn btn-primary btn-margin" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
+        <button class="btn btn-primary btn-margin" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">{{title}}</span>
+    <nav class="mdl-navigation">
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/competitors" routerLinkActive="active">Compétiteurs</a>
+      <a routerLink="/profile" routerLinkActive="active" *ngIf="auth.authenticated()">Profile</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <router-outlet></router-outlet>
+  </main>
 </div>
 
-<h1 highlight>{{title}}</h1>
-<nav>
-    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-    <a routerLink="/competitors" routerLinkActive="active">Compétiteurs</a>
-    <a routerLink="/profile" routerLinkActive="active" *ngIf="auth.authenticated()">Profile</a>
-</nav>
-<router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-h1 {
+/*h1 {
   font-size: 1.2em;
   color: #999;
   margin-bottom: 0;
@@ -25,4 +25,17 @@ nav a:hover {
 }
 nav a.active {
   color: #039be5;
+}*/
+
+/* Uses a transparent header that draws on top of the layout's background */
+
+.demo-layout-transparent {
+  background: url('../assets/navigation/07-520200.jpg') center / cover;
 }
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+
