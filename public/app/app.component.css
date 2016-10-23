@@ -29,7 +29,7 @@ nav a.active {
 
 /* Uses a transparent header that draws on top of the layout's background */
 
-.demo-layout-transparent {
+.nav-transparent {
   background: url('../assets/navigation/07-520200.jpg') center / cover;
 }
 .demo-layout-transparent .mdl-layout__header,
@@ -37,5 +37,34 @@ nav a.active {
   /* This background is dark, so we set text to white. Use 87% black instead if
      your background is light. */
   color: white;
+}
+
+header.nav-transparent {
+    z-index: 1000;
+    background: transparent;
+    font-size: 14px;
+    position: fixed;
+    padding: 10px 0 10px 0;
+    top: 0;
+    background: rgba(255,255,255,0.9);
+    left: 0;
+    right: 0;
+    /*height: 69px;*/
+    border-bottom: 1px solid #f1f1f1;
+    width: auto;
+    justify-content: center;
+}
+
+header.nav-transparent .mdl-navigation__link {
+  color:rgba(0, 0, 0, 0.87);
+  line-height: 28px;
+}
+
+.nav-transparent .mdl-layout__header-row .mdl-navigation {
+  height: initial;
+}
+
+.nav-transparent .mdl-layout__header-row {
+   height: initial; 
 }
 
