@@ -20,6 +20,7 @@ import { UserProfileComponent }   from './user/user-profile.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { MdlUpgradeElementDirective } from './directives/mdl-upgrade-element.directive';
 import { AuthService } from './services/auth.service';
+import { MaterialModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { AuthService } from './services/auth.service';
     FormsModule,
     routing,
     HttpModule
+    ,MaterialModule.forRoot()
     //, InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   declarations: [
