@@ -18,6 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroSearchComponent } from './team/hero-search.component';
 import { UserProfileComponent }   from './user/user-profile.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { MdlUpgradeElementDirective } from './directives/mdl-upgrade-element.directive';
 import { AuthService } from './services/auth.service';
 
 @NgModule({
@@ -35,7 +36,8 @@ import { AuthService } from './services/auth.service';
     HeroDetailComponent,
     HeroSearchComponent,
     HighlightDirective,
-    UserProfileComponent
+    UserProfileComponent,
+    MdlUpgradeElementDirective
   ],
   bootstrap: [CmpComponent],
   providers: [

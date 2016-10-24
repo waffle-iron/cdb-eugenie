@@ -6,8 +6,8 @@
 		<div class="mdl-layout-spacer"></div>
 		<!-- Navigation -->
 		<nav class="mdl-navigation">
-			<a routerLink="/dashboard" class="mdl-navigation__link" routerLinkActive="active">Dashboard</a>
-			<a routerLink="/competitors" class="mdl-navigation__link" routerLinkActive="active">Compétiteurs</a>
+			<a routerLink="/dashboard" class="mdl-navigation__link" routerLinkActive="active">Tableau de bord</a>
+			<!-- <a routerLink="/competitors" class="mdl-navigation__link" routerLinkActive="active">Compétiteurs</a>-->
 			<a routerLink="/profile" class="mdl-navigation__link" routerLinkActive="active" *ngIf="auth.authenticated()">Profile</a>
 			<a class="mdl-navigation__link" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</a>
 			<a class="mdl-navigation__link" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</a>
@@ -24,6 +24,6 @@
 </div>
 
 
-<main class="mdl-layout__content">
+<main mdl class="mdl-layout__content">
 	<router-outlet></router-outlet>
 </main>

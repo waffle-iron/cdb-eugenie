@@ -68,3 +68,9 @@ header.nav-transparent .mdl-navigation__link {
    height: initial; 
 }
 
+main.mdl-layout__content {
+    margin: 0 auto;
+    max-width: 1024px;
+    position: relative;
+    display: block;
+}
