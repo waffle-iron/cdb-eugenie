@@ -72,6 +72,7 @@
     "@types/morgan": "^1.7.32",
     "@types/node": "^6.0.45",
     "@types/serve-static": "^1.7.31",
-    "@types/auth0-lock": "^10.0.20"
+    "@types/auth0-lock": "^10.0.20",
+    "@types/hammerjs":"^2.0.33"
   }
 }

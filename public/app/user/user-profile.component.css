@@ -1,6 +1,6 @@
 
 .profil-text-styling h1 {
-    padding-top: 50px;
+    padding-top: 40px;
     padding-bottom: 40px;
     height: auto;
     margin-bottom: 8px;
@@ -8,7 +8,7 @@
 
 .profil-text-styling .heading {
     border-bottom: 1px solid rgba(0,0,0,.05);
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .profil-text-styling h2 {
@@ -23,4 +23,16 @@
 .profil-text-styling {
     margin: 0 auto;
     max-width: 700px;
+}
+
+.cdb-input-hint {
+    font-size: 14px;
+    margin-right: 20px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,.44);
+}
+
+.cdb-list-separator {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }

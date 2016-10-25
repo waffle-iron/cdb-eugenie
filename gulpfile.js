@@ -44,6 +44,6 @@ gulp.task('nodemon', function (cb) {
 });
 
 gulp.task('default', ['browser-sync'], function () {
-  gulp.watch(['public/*.html'], reload);
+ // gulp.watch(['public/*.html'], reload);
   
 });

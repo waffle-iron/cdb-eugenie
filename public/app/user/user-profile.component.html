@@ -7,11 +7,33 @@
 	</div>
 
 
-	<div>
-		<md-input placeholder="Email" style="width: 100%" [(ngModel)]="userProfile.email"></md-input>
+	<div class="cdb-list-separator">
+		<md-input dividerColor="primary" placeholder="Email" class="cdb-input" style="width: 100%" [(ngModel)]="userProfile.email">
+			<span md-prefix><md-icon>lock_outline</md-icon></span>
+		</md-input>
+		<div class="cdb-input-hint">
+			Nous ne partagerons pas votre adresse e-mail privée avec d'autres utilisateurs.
+		</div>
 	</div>
-	<div>
+	<div class="cdb-list-separator">
+		<md-input dividerColor="primary" placeholder="Civilité" class="cdb-input" style="width: 10%" [(ngModel)]="userProfile.civ"></md-input>
+		<md-input dividerColor="primary" placeholder="Prénom" class="cdb-input" style="width: 44%" [(ngModel)]="userProfile.first_name"></md-input>
+		<md-input dividerColor="primary" placeholder="Nom" class="cdb-input" style="width: 44%" [(ngModel)]="userProfile.last_name"></md-input>
+	</div>
+	<div class="cdb-list-separator">
+		<md-input dividerColor="primary" placeholder="Sexe" class="cdb-input" style="width: 100%" [(ngModel)]="userProfile.sex"></md-input>
 	</div>
 
+	<div class="cdb-list-separator">
+		<md-input dividerColor="primary" placeholder="Date de naissance" class="cdb-input" style="width: 100%" [(ngModel)]="userProfile.birth_date">
+			<span md-prefix><md-icon>lock_outline</md-icon></span>
+		</md-input>
+		<div class="cdb-input-hint">
+			Nous utilisons cette donnée à des fins d'analyse et ne la partageons jamais avec d'autres utilisateurs.
+		</div>
+	</div>
 
+	<div class="cdb-list-separator">
+
+	</div>
 </div>

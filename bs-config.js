@@ -7,13 +7,14 @@ var fallback = require('connect-history-api-fallback');
  */
 module.exports = {
   port: 5050,
-  injectChanges: false, // workaround for Angular 2 styleUrls loading
+  injectChanges: true, // workaround for Angular 2 styleUrls loading
   files: ['./**/*.{html,htm,css,js}'],
   watchOptions: {
     ignored: 'node_modules'
   },
   proxy: {
     target:"localhost:8080",
+    ws: true, // enables websockets
     middleware: [
       fallback({
         index: '/index.html',
