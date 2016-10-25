@@ -16,18 +16,18 @@ body {
     margin: 0;*/
 }
 
-h1 {
+app h1 {
   color: #369;
   font-family: Roboto, Helvetica, sans-serif;
   font-size: 250%;
 }
-h2, h3 {
+app h2, app h3 {
   color: #444;
   font-family: Roboto, Helvetica, sans-serif;
   font-weight: normal;
 }
 
-body, input[text], button {
+body, app input[text], app button {
   color: #888;
   font-family: Roboto, Georgia;
 }
@@ -37,7 +37,7 @@ body, input[text], button {
   font-family: Roboto, Helvetica, sans-serif;
 }
 
-a:hover {
+app a:hover {
 cursor: pointer;
 }
 
@@ -70,3 +70,11 @@ cursor: pointer;
 .cdb-input .md-input-infix {
     width: 100%;
 }    
+
+.cdb-input label {
+  /*  color: #888;*/
+    /* display: inline-block; */
+     max-width: initial; 
+     margin-bottom: 0px; 
+     font-weight: initial; 
+}
