@@ -21,6 +21,7 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { MdlUpgradeElementDirective } from './directives/mdl-upgrade-element.directive';
 import { AuthService } from './services/auth.service';
 import { MaterialModule } from '@angular/material';
+import { CdbSelect } from './directives/select/select.directive';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { MaterialModule } from '@angular/material';
     HeroSearchComponent,
     HighlightDirective,
     UserProfileComponent,
-    MdlUpgradeElementDirective
+    MdlUpgradeElementDirective,
+    CdbSelect
   ],
   bootstrap: [CmpComponent],
   providers: [
