@@ -21,7 +21,7 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { MdlUpgradeElementDirective } from './directives/mdl-upgrade-element.directive';
 import { AuthService } from './services/auth.service';
 import { MaterialModule } from '@angular/material';
-import { CdbSelect } from './directives/select/select.directive';
+import { CdbSelectModule } from './directives/select/select.directive';
 
 @NgModule({
   imports: [
@@ -30,6 +30,7 @@ import { CdbSelect } from './directives/select/select.directive';
     routing,
     HttpModule
     ,MaterialModule.forRoot()
+    ,CdbSelectModule.forRoot()
     //, InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   declarations: [
@@ -41,7 +42,7 @@ import { CdbSelect } from './directives/select/select.directive';
     HighlightDirective,
     UserProfileComponent,
     MdlUpgradeElementDirective,
-    CdbSelect
+    //CdbSelect
   ],
   bootstrap: [CmpComponent],
   providers: [

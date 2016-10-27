@@ -45,6 +45,20 @@ const MD_INPUT_INVALID_INPUT_TYPE = [
 
 let nextUniqueId = 0;
 
+/** The hint directive, used to tag content as hint labels (going under the input). */
+@Directive({
+  selector: 'cdb-option',
+  host: {
+    //'[class.md-right]': 'align == "end"',
+    '[class.cdb-option]': 'true'
+  }
+})
+export class CdbOption {
+  // Whether to align the hint label at the start or end of the line.
+  @Input() align: 'start' | 'end' = 'start';
+}
+
+
 /**
  * Component that represents a text input. It encapsulates the <input> HTMLElement and
  * improve on its behaviour, along with styling it according to the Material Design.
@@ -64,6 +78,12 @@ export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnCh
  // private _onTouchedCallback: () => void = noop;
   /** Callback registered via registerOnChange (ControlValueAccessor) */
   private _onChangeCallback: (_: any) => void = noop;
+
+  /**
+   * Content directives.
+   */
+  @ContentChildren(CdbOption) _optionChildren: QueryList<CdbOption>;
+
 
   /**
    * Aria related inputs.
@@ -128,7 +148,7 @@ export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnCh
 
   get value(): any { return this._value; };
   @Input() set value(v: any) {
-   // v = this._convertValueForInputType(v);
+    console.log("@Input() set value");
     if (v !== this._value) {
       this._value = v;
       this._onChangeCallback(v);
@@ -232,3 +252,16 @@ export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnCh
   }*/
 }
 
+@NgModule({
+  declarations: [CdbSelect, CdbOption],
+  imports: [CommonModule, FormsModule],
+  exports: [CdbSelect, CdbOption],
+})
+export class CdbSelectModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: CdbSelectModule,
+      providers: []
+    };
+  }
+}

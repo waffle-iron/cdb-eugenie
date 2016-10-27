@@ -17,8 +17,11 @@
 	</div>
 	<div class="cdb-list-separator">
 		<md-input dividerColor="primary" placeholder="Civilité" class="cdb-input" style="width: 10%" [(ngModel)]="userProfile.civ"></md-input>
-		<cdb-select placeholder="Civilité" [(ngModel)]="userProfile.civ"></cdb-select>
-		<md-input dividerColor="primary" placeholder="Prénom" class="cdb-input" style="width: 44%" [(ngModel)]="userProfile.first_name"></md-input>
+		<cdb-select placeholder="Civilité" [(ngModel)]="userProfile.civ" class="cdb-select">
+			<cdb-option value="axe">Axe<b>dsds</b></cdb-option>
+		</cdb-select>
+		<md-input dividerColor="primary" placeholder="Prénom" class="cdb-input" style="width: 44%" [(ngModel)]="userProfile.first_name">
+		</md-input>
 		<md-input dividerColor="primary" placeholder="Nom" class="cdb-input" style="width: 44%" [(ngModel)]="userProfile.last_name"></md-input>
 	</div>
 	<div class="cdb-list-separator">
