@@ -51,7 +51,7 @@ dancer.dancers(app);
 // frontend routes =========================================================
 // route to handle all angular requests
 app.get('*', function(req, res) {
-    res.sendfile('index.html'); // load our public/index.html file
+    res.sendFile('index.html', {"root": __dirname}); // load our public/index.html file
 });
 
 

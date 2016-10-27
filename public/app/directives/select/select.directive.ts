@@ -30,7 +30,7 @@ import {Observable} from 'rxjs/Observable';
 
 const noop = () => {};
 
-export const MD_INPUT_CONTROL_VALUE_ACCESSOR: any = {
+export const CDB_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CdbSelect),
   multi: true,
@@ -53,7 +53,8 @@ let nextUniqueId = 0;
   moduleId: module.id,
   selector: 'cdb-select',
   templateUrl: 'select.directive.html',
-  styleUrls: ['select.directive.css'] 
+  styleUrls: ['select.directive.css'],
+  providers: [CDB_INPUT_CONTROL_VALUE_ACCESSOR] 
 })
 export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnChanges*/ {
   private _focused: boolean = false;
