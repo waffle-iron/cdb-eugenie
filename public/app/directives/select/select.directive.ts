@@ -68,7 +68,8 @@ export class CdbOption {
   selector: 'cdb-select',
   templateUrl: 'select.directive.html',
   styleUrls: ['select.directive.css'],
-  providers: [CDB_INPUT_CONTROL_VALUE_ACCESSOR] 
+  providers: [CDB_INPUT_CONTROL_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None 
 })
 export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnChanges*/ {
   private _focused: boolean = false;

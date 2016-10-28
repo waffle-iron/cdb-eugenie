@@ -1,4 +1,5 @@
-<div class="dropdown" [class.open]="isOpen">
+<div class="dropdown" [class.cdb-input-focused]="isOpen">
+<label for="" class="md-placeholder">{{placeholder}}</label>
 	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" (click)="isOpen = !isOpen;">
         {{placeholder}}
 				<span class="caret"></span>
