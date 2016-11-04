@@ -22,6 +22,7 @@ import { MdlUpgradeElementDirective } from './directives/mdl-upgrade-element.dir
 import { AuthService } from './services/auth.service';
 import { MaterialModule } from '@angular/material';
 import { CdbSelectModule } from './directives/select/select.directive';
+import { MdRippleModule } from '@angular/material/core/core';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { CdbSelectModule } from './directives/select/select.directive';
     HttpModule
     ,MaterialModule.forRoot()
     ,CdbSelectModule.forRoot()
+    ,MdRippleModule
     //, InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   declarations: [

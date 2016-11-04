@@ -50,7 +50,8 @@ let nextUniqueId = 0;
   selector: 'cdb-option',
   host: {
     //'[class.md-right]': 'align == "end"',
-    '[class.cdb-option]': 'true'
+    '[class.cdb-option]': 'true',
+    'md-ripple': ''
   }
 })
 export class CdbOption {
