@@ -7,28 +7,28 @@
 	</div>
 
 
-	<div class="cdb-list-separator">
-		<md-input dividerColor="primary" placeholder="Email" class="cdb-input" style="width: 100%" [(ngModel)]="userProfile.email">
+	<div class="cdb-list-separator col">
+		<md-input dividerColor="primary" placeholder="Email" class="cdb-input" [(ngModel)]="userProfile.email">
 			<span md-prefix><md-icon>lock_outline</md-icon></span>
 		</md-input>
-		<div class="cdb-input-hint">
+		<div class="cdb-input-hint" style="flex-direction: column;">
 			Nous ne partagerons pas votre adresse e-mail privée avec d'autres utilisateurs.
 		</div>
 	</div>
 	<div class="cdb-list-separator">
-		<cdb-select placeholder="Civilité" [(ngModel)]="userProfile.civ" class="cdb-select" style="width: 10%">
-			<cdb-option value="axe">Axe<b>dsds</b></cdb-option>
+		<cdb-select placeholder="Civilité" [(ngModel)]="userProfile.civ" class="cdb-select" style="">
+			<cdb-option *ngFor="let title of titles" value="{{title.id}}">{{title.title}}</b></cdb-option>
 		</cdb-select>
-		<md-input dividerColor="primary" placeholder="Prénom" class="cdb-input" style="width: 44%" [(ngModel)]="userProfile.first_name">
+		<md-input dividerColor="primary" placeholder="Prénom" class="cdb-input" [(ngModel)]="userProfile.first_name">
 		</md-input>
-		<md-input dividerColor="primary" placeholder="Nom" class="cdb-input" style="width: 44%" [(ngModel)]="userProfile.last_name"></md-input>
+		<md-input dividerColor="primary" placeholder="Nom" class="cdb-input" [(ngModel)]="userProfile.last_name"></md-input>
 	</div>
 	<div class="cdb-list-separator">
-		<md-input dividerColor="primary" placeholder="Sexe" class="cdb-input" style="width: 100%" [(ngModel)]="userProfile.sex"></md-input>
+		<md-input dividerColor="primary" placeholder="Sexe" class="cdb-input" [(ngModel)]="userProfile.sex"></md-input>
 	</div>
 
-	<div class="cdb-list-separator">
-		<md-input dividerColor="primary" placeholder="Date de naissance" class="cdb-input" style="width: 100%" [(ngModel)]="userProfile.birth_date">
+	<div class="cdb-list-separator col">
+		<md-input dividerColor="primary" placeholder="Date de naissance" class="cdb-input" [(ngModel)]="userProfile.birth_date">
 			<span md-prefix><md-icon>lock_outline</md-icon></span>
 		</md-input>
 		<div class="cdb-input-hint">

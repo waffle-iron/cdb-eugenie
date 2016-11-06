@@ -25,8 +25,8 @@ import {
 } from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {BooleanFieldValue, MdError} from '@angular/material/core';
+import {MdRippleModule} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
-
 
 const noop = () => {};
 
@@ -47,11 +47,10 @@ let nextUniqueId = 0;
 
 /** The hint directive, used to tag content as hint labels (going under the input). */
 @Directive({
-  selector: 'cdb-option',
+  selector: 'cdb-option',  
   host: {
     //'[class.md-right]': 'align == "end"',
     '[class.cdb-option]': 'true',
-    'md-ripple': ''
   }
 })
 export class CdbOption {
@@ -256,7 +255,7 @@ export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnCh
 
 @NgModule({
   declarations: [CdbSelect, CdbOption],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MdRippleModule],
   exports: [CdbSelect, CdbOption],
 })
 export class CdbSelectModule {

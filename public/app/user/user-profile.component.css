@@ -33,6 +33,15 @@
 }
 
 .cdb-list-separator {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    display: flex;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.cdb-list-separator.col {
+    flex-direction: column;
 }

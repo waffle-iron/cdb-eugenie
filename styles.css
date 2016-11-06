@@ -1,3 +1,9 @@
+
+@import './node_modules/@angular/material/core/theming/prebuilt/indigo-pink.css';
+/*
+@import './node_modules/@angular/material/core/ripple/_ripple.scss';
+*/
+
 /* Master Styles */
 html {
   /*  width: 100%;
@@ -30,7 +36,7 @@ app h2, app h3 {
 body, app input[text], app button {
   color: #888;
   font-family: Roboto, Georgia;
-  font-size: 16px;
+  font-size: 14px;
 }
 /* . . . */
 /* everywhere else */
@@ -56,6 +62,8 @@ cursor: pointer;
     width:0%;
     left: 45%;
     transition: all 300ms cubic-bezier(.4,0,.2,1);
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
     opacity: 1;
 }
 .cdb-input input {
@@ -71,8 +79,12 @@ cursor: pointer;
 }
 
 .cdb-input .md-input-infix {
-    width: 100%;
+   width: 100%;
 }    
+
+.md-input-prefix>span {
+    padding-right: 15px;
+}
 
 .cdb-input label {
   /*  color: #888;*/
@@ -80,10 +92,40 @@ cursor: pointer;
      max-width: initial; 
      margin-bottom: 0px; 
      font-weight: initial; 
-    font-size: 16px;
+    font-size: 14px;
 }
 
 cdb-select .md-placeholder {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: initial; 
+}
+
+
+cdb-select {
+    position: relative;
+    padding: 2px;
+    margin: 0px 0;
+    vertical-align: middle;
+	display: block;
+  -webkit-flex: 1;
+    flex: 1;
+}
+
+md-input {
+    position: relative;
+    padding: 2px;
+    margin: 0px 0;
+    vertical-align: middle;
+	display: block;
+  -webkit-flex: 1;
+    flex: 1;
+}
+
+.md-input-wrapper {
+  position: relative;
+  margin: 5px 0 !important;
+}
+
+.md-input-prefix {
+ /* width: 20px;*/
 }

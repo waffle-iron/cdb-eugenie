@@ -4,6 +4,12 @@ import { Observable }        from 'rxjs/Observable';
 import { AuthService } from '../services/auth.service';
 import { User } from '../model/user';
 
+const TITLES = [
+  { id: 1, title: 'Monsieur' },
+  { id: 2, title: 'Madame' },
+  { id: 3, title: 'Mademoiselle' },
+];
+
 @Component({
   moduleId: module.id,
   selector: 'user-profile',
@@ -13,6 +19,7 @@ import { User } from '../model/user';
 
 export class UserProfileComponent implements OnInit {
   userProfile: User;
+  titles = TITLES;
 
   constructor(
     private AuthService: AuthService,
