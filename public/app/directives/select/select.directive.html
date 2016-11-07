@@ -13,7 +13,7 @@
 		<div class="md-input-underline"> <span class="md-input-ripple" [class.md-focused]="isOpen"></span> </div>
 
 	</div>
-		<ul class="dropdown-menu" (click)="_handleClick($event)">
-			<li md-ripple [md-ripple-color]="black"><ng-content select="cdb-option"></ng-content></li>
+		<ul class="dropdown-menu">
+			<ng-content select="cdb-option"></ng-content>
 		</ul>
 </div>

@@ -17,7 +17,7 @@
 	</div>
 	<div class="cdb-list-separator">
 		<cdb-select placeholder="Civilité" [(ngModel)]="userProfile.civ" class="cdb-select" style="">
-			<cdb-option *ngFor="let title of titles" value="{{title.id}}">{{title.title}}</b></cdb-option>
+			<cdb-option *ngFor="let title of titles" value="title.id">{{title.title}}</cdb-option>
 		</cdb-select>
 		<md-input dividerColor="primary" placeholder="Prénom" class="cdb-input" [(ngModel)]="userProfile.first_name">
 		</md-input>

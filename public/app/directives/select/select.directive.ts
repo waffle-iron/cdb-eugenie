@@ -45,17 +45,41 @@ const MD_INPUT_INVALID_INPUT_TYPE = [
 
 let nextUniqueId = 0;
 
+/** A simple change event emitted on selection changes. */
+export class CdbOptionSelectEvent {
+  index: number;
+  option: CdbOption;
+}
+
 /** The hint directive, used to tag content as hint labels (going under the input). */
-@Directive({
+@Component({
+  moduleId: module.id,
   selector: 'cdb-option',  
   host: {
     //'[class.md-right]': 'align == "end"',
     '[class.cdb-option]': 'true',
-  }
+    'md-ripple':'',
+    '(click)':'_handleClick()',
+  },
+  template: '<li md-ripple [md-ripple-color]="black"><ng-content></ng-content></li>',
 })
 export class CdbOption {
-  // Whether to align the hint label at the start or end of the line.
-  @Input() align: 'start' | 'end' = 'start';
+  private _value: any = '';
+  
+  @Output() onSelect = new EventEmitter<boolean>();
+
+  _handleClick() {
+    this.onSelect.emit(this._value);
+  }
+
+  get value(): any { return this._value; };
+
+  @Input() set value(v: any) {
+    console.log("@CdbOption() set value");
+    if (v !== this._value) {
+      this._value = v;
+    }
+  }
 }
 
 
@@ -156,6 +180,7 @@ export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnCh
     }
   }
 
+
   // This is to remove the `align` property of the `md-input` itself. Otherwise HTML5
   // might place it as RTL when we don't want to. We still want to use `align` as an
   // Input though, so we use HostBinding.
@@ -185,6 +210,11 @@ export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnCh
     //this._onTouchedCallback();
   }
 
+  onSelect(v: any) {
+    console.log(v);
+  
+    //this._onTouchedCallback();
+  }
 
   /**
    * Implemented as part of ControlValueAccessor.
@@ -210,6 +240,14 @@ export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnCh
    // this._onTouchedCallback = fn;
   }
 
+  private _validateConstraints() {
+    if (this._optionChildren) {
+
+        this._optionChildren.forEach((option: CdbOption) => {
+
+        });
+    }
+  }
   /** TODO: internal */
  /* ngAfterContentInit() {
     this._validateConstraints();
