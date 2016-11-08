@@ -16,7 +16,8 @@ import {
   Output,
   NgModule,
   ModuleWithProviders,
-  ViewEncapsulation
+  ViewEncapsulation,
+  Renderer,
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -24,6 +25,7 @@ import {
   FormsModule
 } from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {Subscription} from 'rxjs/Subscription';
 import {BooleanFieldValue, MdError} from '@angular/material/core';
 import {MdRippleModule} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
@@ -56,20 +58,22 @@ export class CdbOptionSelectEvent {
   moduleId: module.id,
   selector: 'cdb-option',  
   host: {
-    //'[class.md-right]': 'align == "end"',
     '[class.cdb-option]': 'true',
     'md-ripple':'',
-    '(click)':'_handleClick()',
+    '(click)':'select()',
   },
   template: '<li md-ripple [md-ripple-color]="black"><ng-content></ng-content></li>',
 })
 export class CdbOption {
+  
+  constructor(private _element: ElementRef, private _renderer: Renderer) {}
+
   private _value: any = '';
   
-  @Output() onSelect = new EventEmitter<boolean>();
+  @Output() onSelect = new EventEmitter<any>();
 
-  _handleClick() {
-    this.onSelect.emit(this._value);
+  select() {
+    this.onSelect.emit();
   }
 
   get value(): any { return this._value; };
@@ -79,6 +83,14 @@ export class CdbOption {
     if (v !== this._value) {
       this._value = v;
     }
+  }
+
+  get viewValue(): string {
+    return this._getHostElement().textContent.trim();
+  }
+
+  _getHostElement(): HTMLElement {
+    return this._element.nativeElement;
   }
 }
 
@@ -95,20 +107,32 @@ export class CdbOption {
   providers: [CDB_INPUT_CONTROL_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None 
 })
-export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnChanges*/ {
+export class CdbSelect implements ControlValueAccessor, AfterContentInit/*, OnChanges*/ {
+  /** Whether or not the overlay panel is open. */
+  private _panelOpen = false;
+
   private _focused: boolean = false;
-  private _value: any = '';
+
+  /** The currently selected option. */
+  private _selected: CdbOption;
 
   /** Callback registered via registerOnTouched (ControlValueAccessor) */
  // private _onTouchedCallback: () => void = noop;
   /** Callback registered via registerOnChange (ControlValueAccessor) */
   private _onChangeCallback: (_: any) => void = noop;
 
+  /** Subscriptions to option events. */
+  private _subscriptions: Subscription[] = [];
+
   /**
    * Content directives.
    */
   @ContentChildren(CdbOption) _optionChildren: QueryList<CdbOption>;
 
+  /** The currently selected option. */
+  get selected(): CdbOption {
+    return this._selected;
+  }
 
   /**
    * Aria related inputs.
@@ -159,7 +183,35 @@ export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnCh
 
   private _blurEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
   private _focusEmitter: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+*/
+  /** Toggles the overlay panel open or closed. */
+  toggle(): void {
+    this.panelOpen ? this.close() : this.open();
+  }
 
+  _handleFocus(event: FocusEvent): void {
+    this.toggle();
+  }
+
+  _handleBlur(event: FocusEvent) {
+   // this.toggle();
+  }
+
+  /** Opens the overlay panel. */
+  open(): void {
+    this._panelOpen = true;
+  }
+
+  /** Closes the overlay panel and focuses the host element. */
+  close(): void {
+    this._panelOpen = false;
+  }
+
+  /** Whether or not the overlay panel is open. */
+  get panelOpen(): boolean {
+    return this._panelOpen;
+  }
+/*
   @Output('blur')
   get onBlur(): Observable<FocusEvent> {
     return this._blurEmitter.asObservable();
@@ -171,23 +223,17 @@ export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnCh
   }
 */
 
-  get value(): any { return this._value; };
-  @Input() set value(v: any) {
-    console.log("@Input() set value");
-    if (v !== this._value) {
-      this._value = v;
-      this._onChangeCallback(v);
-    }
-  }
+  get value(): any { return this._selected.value; };
 
 
   // This is to remove the `align` property of the `md-input` itself. Otherwise HTML5
   // might place it as RTL when we don't want to. We still want to use `align` as an
   // Input though, so we use HostBinding.
- /* @HostBinding('attr.align') get _align(): any { return null; }
+ /* @HostBinding('attr.align') get _align(): any { return null; }*/
 
 
   @ViewChild('input') _inputElement: ElementRef;
+
 /*
   /** Set focus on input */
  /* focus() {
@@ -205,24 +251,39 @@ export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnCh
     this._blurEmitter.emit(event);
   }
 */
-  _handleChange(event: Event) {
-    this.value = (<HTMLInputElement>event.target).value;
-    //this._onTouchedCallback();
+
+
+  /** Listens to selection events on each option. */
+  private _listenToOptions(): void {
+    this._optionChildren.forEach((option: CdbOption) => {
+      const sub = option.onSelect.subscribe(() => {
+        this._onSelect(option);
+        this._subscriptions.push(sub);
+      });
+    });
   }
 
-  onSelect(v: any) {
-    console.log(v);
-  
-    //this._onTouchedCallback();
-  }
+  private _onSelect(option: CdbOption) {
+    this._selected = option;
+  } 
 
   /**
    * Implemented as part of ControlValueAccessor.
    * TODO: internal
    */
   writeValue(value: any) {
-    this._value = value;
+    console.log("test writeValue",value)
+    if (!this._optionChildren) { return; }
+
+    this._optionChildren.forEach((option: CdbOption) => {
+      console.log("test writeValue loop",value,option.value)
+      if (option.value == value) {
+        console.log("===",value,option.value)
+        option.select();
+      }
+    });
   }
+
 
   /**
    * Implemented as part of ControlValueAccessor.
@@ -249,10 +310,20 @@ export class CdbSelect implements ControlValueAccessor/*, AfterContentInit, OnCh
     }
   }
   /** TODO: internal */
- /* ngAfterContentInit() {
-    this._validateConstraints();
+  ngAfterContentInit() {
+    this._listenToOptions();
 
-  }*/
+  }
+
+  ngOnDestroy() {
+    this._dropSubscriptions();
+  }
+
+  /** Unsubscribes from all option subscriptions. */
+  private _dropSubscriptions(): void {
+    this._subscriptions.forEach((sub: Subscription) => sub.unsubscribe());
+    this._subscriptions = [];
+  }
 
   /** TODO: internal */
   /*ngOnChanges(changes: {[key: string]: SimpleChange}) {
