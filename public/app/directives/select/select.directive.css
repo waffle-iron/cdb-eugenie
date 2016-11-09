@@ -49,8 +49,9 @@ cdb-select .cdb-select-icon:after {
     transform: scaleY(.5) scaleX(1);
 }
 
-.cdb-input-focused .dropdown-menu {
-    display: block;
+/*.cdb-input-focused*/ 
+.dropdown-menu {
+   display: block;
 }
 
 .dropdown-menu>cdb-option:focus, .dropdown-menu>cdb-option:hover {

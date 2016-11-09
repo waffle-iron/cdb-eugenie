@@ -31,7 +31,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     this.userProfile = this.AuthService.getUserProfile()
-    this.userProfile.title = 1;
+    //this.userProfile.title = 1;
   }
 
   gotoRoot(): void {
