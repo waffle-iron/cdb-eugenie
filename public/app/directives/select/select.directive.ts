@@ -110,6 +110,9 @@ export class CdbOption {
     transformPanel,
     fadeInContent
   ],
+  host: {
+      '[class.cdb-input-focused]': 'focused',
+  },
   providers: [CDB_INPUT_CONTROL_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None
 })
@@ -130,6 +133,10 @@ export class CdbSelect implements ControlValueAccessor, AfterContentInit/*, OnCh
   /** Subscriptions to option events. */
   private _subscriptions: Subscription[] = [];
 
+  @ViewChild('trigger') trigger: ElementRef;
+  @ViewChild('input') _inputElement: ElementRef;
+
+  constructor(private _element: ElementRef, private _renderer: Renderer) {}
 
   /** This position config ensures that the top left corner of the overlay
    * is aligned with with the top left of the origin (overlapping the trigger
@@ -142,8 +149,6 @@ export class CdbSelect implements ControlValueAccessor, AfterContentInit/*, OnCh
     overlayY: 'top'
   }];
 
-  @ViewChild('trigger') trigger: ElementRef;
-  @ViewChild('input') _inputElement: ElementRef;
 
   /**
    * Content directives.
@@ -211,6 +216,14 @@ export class CdbSelect implements ControlValueAccessor, AfterContentInit/*, OnCh
   }
 
   _handleFocus(event: FocusEvent): void {
+    console.log("_handleFocus");
+   // this._focused = true;
+   // this.toggle();
+    //this.focus();
+  }
+
+  _handleClick(): void {
+    console.log("_handleClick");
     this._focused = true;
     this.toggle();
     //this.focus();
@@ -222,7 +235,14 @@ export class CdbSelect implements ControlValueAccessor, AfterContentInit/*, OnCh
   }
 
   _handleBlur(event: FocusEvent) {
-    this._focused = false;
+    console.log("_handleBlur",this.panelOpen, event.target);
+    //this._focused = false;
+
+    if (!this.panelOpen) {
+      this._focused = false;
+    } else {
+      this.focus();
+    }
     // this.toggle();
   }
 
@@ -240,6 +260,7 @@ export class CdbSelect implements ControlValueAccessor, AfterContentInit/*, OnCh
 
   /** Closes the overlay panel and focuses the host element. */
   close(): void {
+    console.log("close");
     this._panelOpen = false;
   }
 
@@ -300,9 +321,16 @@ export class CdbSelect implements ControlValueAccessor, AfterContentInit/*, OnCh
   }
 
   private _onSelect(option: CdbOption) {
+    console.log("_onSelect",this._inputElement.nativeElement.focused);
     this._selected = option;
-    //this.focus();
+    this._focusHost();
     this.close();
+  }
+
+  /** Focuses the host element when the panel closes. */
+  private _focusHost(): void {
+    this._focused = true;
+    //this._renderer.invokeElementMethod(this._element.nativeElement, 'focus');
   }
 
   /**
@@ -339,14 +367,14 @@ export class CdbSelect implements ControlValueAccessor, AfterContentInit/*, OnCh
     // this._onTouchedCallback = fn;
   }
 
-  private _validateConstraints() {
+ /* private _validateConstraints() {
     if (this._optionChildren) {
 
       this._optionChildren.forEach((option: CdbOption) => {
 
       });
     }
-  }
+  }*/
   /** TODO: internal */
   ngAfterContentInit() {
     this._listenToOptions();

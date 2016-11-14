@@ -2,6 +2,7 @@
 * Label 
 */
 cdb-select {
+    cursor: pointer;
     display: inline-block;
     position: relative;
     /*vertical-align: middle;*/
@@ -91,8 +92,12 @@ cdb-select .md-placeholder, cdb-select label {
 }
 
 cdb-select .cdb-input-focused label {
-    -webkit-transform: translateY(-22px) translateX(-2px) scale(.75);
+   /* -webkit-transform: translateY(-22px) translateX(-2px) scale(.75);
     transform: translateY(-22px) translateX(-2px) scale(.75);
+*/
+    padding-bottom: 5px;
+    transform: translateY(-100%) scale(0.75);
+    width: 133.33333%;
 }
 
 cdb-select .cdb-input-focused label {
